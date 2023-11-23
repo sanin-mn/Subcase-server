@@ -8,7 +8,8 @@ const router = new express.Router()
 // define different routes for server app
 // register
 router.post('/user/register',usercontroller.register)
-
+// login
+router.post('/user/login',usercontroller.login)
 
 
 // export router

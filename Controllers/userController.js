@@ -1,5 +1,6 @@
 // import user model
 const users = require('../Models/userSchema')
+const jwt = require('jsonwebtoken')
 
 // register
 exports.register = async (req, res) => {
@@ -22,6 +23,29 @@ exports.register = async (req, res) => {
         }
     } catch (err) {
         res.status(401).json(`Error!!! Transaction failed : ${err}`)
+    }
+}
+
+// login
+exports.login = async (req,res) =>{
+    console.log("Inside login function");
+    const {email,password} = req.body
+    try{
+        // check user exist
+        const existingUser = await users.findOne({email,password})
+        if(existingUser){
+            // generate token
+            const token = jwt.sign({userId:existingUser._id},"superSecretKey123")
+            res.status(200).json({
+                existingUser,
+                role:"user",
+                token
+            })
+        }else{
+            res.status(404).json("Incorrect Email / Password")
+        }
+    }catch(err){
+        res.status(401).json(`Error!!! Transaction failed : ${err}`) 
     }
 }
 
