@@ -1,19 +1,22 @@
 // load env file
 require('dotenv').config()
-
 // import express
 const express = require('express')
 // import cors
 const cors = require('cors')
-
-
+// import router
+const router = require('./Routes/routes')
 // create express server
 const subServer = express()
+// import db
+require('./DB/connection')
 
 // use cors
 subServer.use(cors())
 // parse json data to server
 subServer.use(express.json())
+// use router
+subServer.use(router)
 
 // port for server
 const PORT = 4000 || process.env.PORT
