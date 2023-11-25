@@ -38,6 +38,10 @@ const movieSchema = new mongoose.Schema({
     subfile:{
         type:String,
         required:[true,'subfile is required']
+    },
+    userId:{
+        type:String,
+        required:true
     }
 })
 

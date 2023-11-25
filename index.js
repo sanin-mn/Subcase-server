@@ -25,6 +25,9 @@ subServer.use(router)
 // port for server
 const PORT = 4000 || process.env.PORT
 
+// export upload folder
+subServer.use('/uploads',express.static('./uploads'))
+
 // to run server
 subServer.listen(PORT,()=>{
     console.log(`subServer started at port:${PORT}`);
