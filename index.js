@@ -6,6 +6,8 @@ const express = require('express')
 const cors = require('cors')
 // import router
 const router = require('./Routes/routes')
+// import middleware
+
 // create express server
 const subServer = express()
 // import db
@@ -15,6 +17,8 @@ require('./DB/connection')
 subServer.use(cors())
 // parse json data to server
 subServer.use(express.json())
+// use middleware
+
 // use router
 subServer.use(router)
 
