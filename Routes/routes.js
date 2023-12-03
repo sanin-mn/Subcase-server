@@ -25,6 +25,8 @@ router.get('/admin/movies',jwtMiddleware,movieController.getAllMovies)
 router.get('/home/homemovies',movieController.getAllMovies)
 // get all movies
 router.get('/movies/all',movieController.getAllMovies)
+// get all search
+router.get('/movies/search',movieController.getSearchMovies)
 // edit movie
 router.put('/movie/edit/:id',jwtMiddleware,multerConfig,movieController.editMovies)
 // delete movie

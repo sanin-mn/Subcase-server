@@ -55,6 +55,20 @@ exports.getAllMovies = async (req, res) => {
     }
 }
 
+// get all searches
+exports.getSearchMovies = async (req, res) => {
+    const searchKey = req.query.search
+    const query = {
+        moviename:{$regex:searchKey,$options:"i"}
+    }
+    try {
+        const allSearch = await movies.find(query)
+        res.status(200).json(allSearch)
+    } catch (err) {
+        res.status(401).json(`Error!!! Transaction failed :${err}`)
+    }
+}
+
 // edit movies
 exports.editMovies = async (req, res) => {
 
